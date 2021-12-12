@@ -1,8 +1,13 @@
-import os, json, sys, requests
-
+import os
 import requests
+import json
+import sys
+import shutil
 
 # open config file for download location
+configFileCheck = os.path.join(os.getcwd(), "config.json")
+if not os.path.exists(configFileCheck):
+    shutil.copy2("./config-sample.json", "./config.json")
 
 with open("config.json", "r") as f:
     config = json.load(f)
@@ -38,5 +43,10 @@ def getReplays(replayID):
 
 # Main file
 
-replayID = input("Which replay would you like to download? ID: ")
+print("""
+Welcome! Thank you for choosing Ripurei!
+
+Please submit a Replay ID below to start the replay download.
+""")
+replayID = input("Selected Replay ID: ")
 getReplays(replayID)
